@@ -73,33 +73,50 @@ class neural_network:
         # Create window
         win = GraphWin('Neural Network',400,300)
 
+        # Radius is uniformly set for every node in the network visualization
         radius = 15
 
+        # Empty lists for tracking each node in the visualization
         inputs = []
         hiddens = []
         outputs = []
 
         for _ in range(self.onodes):
+            # Creates a new node for the output layer and draws it
             outputs.append(Circle(Point(300, 50 * _ + 50), radius))
             outputs[_].draw(win)
 
         for _ in range(self.hnodes):
+            # Creates a new node for the hidden layer and draws it
             hiddens.append(Circle(Point(200, 50 * _ + 50), radius))
             hiddens[_].draw(win)
 
             for i in range(self.onodes):
+                # Finds the point on the edge of the circle of the node in the
+                #   hidden layer closest to the corresponding node in the output
+                #   layer
                 p1 = self.getEdgePoint(hiddens[_],outputs[i],radius)
+                # Does the same for the node on the output layer to the node on
+                #   the hidden layer
                 p2 = self.getEdgePoint(outputs[i],hiddens[_],radius)
+                # Creates a line object from the two points found above and
+                #   draws the line connecting them
                 lines_who = Line(p1, p2)
                 lines_who.draw(win)
 
         for _ in range(self.inodes):
+            # Creates a new node for the input layer and draws it
             inputs.append(Circle(Point(100,100 * _ + 50), radius))
             inputs[_].draw(win)
 
             for j in range(self.hnodes):
+                # Finds the point on the edge of the circle of the node in the
+                #   input layer closest to the corresponding node in the hidden
+                #   layer
                 p1 = self.getEdgePoint(inputs[_],hiddens[j],radius)
                 p2 = self.getEdgePoint(hiddens[j],inputs[_],radius)
+                # Does the same for the node on the hidden layer to the node on
+                #   the input layer and draws the line connecting them
                 lines_wih = Line(p1,p2)
                 lines_wih.draw(win)
 
