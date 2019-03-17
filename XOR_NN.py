@@ -2,12 +2,13 @@ import numpy as np
 import neural_network as network
 import matplotlib.pyplot as plt
 
-nn = network.neural_network(2,2,2,0.5)
+nn = network.neural_network(2,4,1,0.5)
 print("Initial input_hidden weights:\n", nn.weights_ih)
 print("Initial hidden_output weights:\n", nn.weights_ho)
 
 inputs = [[0,0],[0,1],[1,0],[1,1]]
-targets = [[0,0],[1,0],[0,1],[0,0]]
+targets = [[0],[1],[1],[0]]
+# targets = [[0,0],[1,0],[0,1],[0,0]]
 
 i = 0
 for example in inputs:
