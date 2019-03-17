@@ -70,8 +70,11 @@ class neural_network:
 
 
     def visualize(self):
+        width = 400
+        height = 300
+
         # Create window
-        win = GraphWin('Neural Network',400,300)
+        win = GraphWin('Neural Network',width,height)
 
         # Radius is uniformly set for every node in the network visualization
         radius = 15
@@ -81,14 +84,16 @@ class neural_network:
         hiddens = []
         outputs = []
 
+        output_scale = height / (self.onodes + 1)
         for _ in range(self.onodes):
             # Creates a new node for the output layer and draws it
-            outputs.append(Circle(Point(300, 50 * _ + 50), radius))
+            outputs.append(Circle(Point(300, (_ + 1) * output_scale), radius))
             outputs[_].draw(win)
 
+        hidden_scale = height / (self.hnodes + 1)
         for _ in range(self.hnodes):
             # Creates a new node for the hidden layer and draws it
-            hiddens.append(Circle(Point(200, 50 * _ + 50), radius))
+            hiddens.append(Circle(Point(200, (_ + 1) * hidden_scale), radius))
             hiddens[_].draw(win)
 
             for i in range(self.onodes):
@@ -104,9 +109,10 @@ class neural_network:
                 lines_who = Line(p1, p2)
                 lines_who.draw(win)
 
+        input_scale = height / (self.inodes + 1)
         for _ in range(self.inodes):
             # Creates a new node for the input layer and draws it
-            inputs.append(Circle(Point(100,100 * _ + 50), radius))
+            inputs.append(Circle(Point(100,(_ + 1) * input_scale), radius))
             inputs[_].draw(win)
 
             for j in range(self.hnodes):
