@@ -17,7 +17,7 @@ for example in inputs:
 
 print("")
 
-for _ in range(100000):
+for _ in range(1000):
     for i in range(len(inputs)):
         nn.train(inputs[i],targets[i])
 
@@ -28,3 +28,5 @@ i = 0
 for example in inputs:
     print("Guess: ", nn.query(example), "Actual: ", targets[i])
     i += 1
+
+nn.visualize()
