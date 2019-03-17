@@ -107,6 +107,14 @@ class neural_network:
                 # Creates a line object from the two points found above and
                 #   draws the line connecting them
                 lines_who = Line(p1, p2)
+
+                # Sets the color of the line based on positive (blue) vs
+                #   negative (red) connections
+                if self.weights_ho[i,_] < 0:
+                    lines_who.setFill("red")
+                else:
+                    lines_who.setFill("blue")
+
                 lines_who.draw(win)
 
         input_scale = height / (self.inodes + 1)
@@ -124,6 +132,14 @@ class neural_network:
                 # Does the same for the node on the hidden layer to the node on
                 #   the input layer and draws the line connecting them
                 lines_wih = Line(p1,p2)
+
+                # Sets the color of the line based on positive (blue) vs
+                #   negative (red) connections
+                if self.weights_ih[j,_] < 0:
+                    lines_wih.setFill("red")
+                else:
+                    lines_wih.setFill("blue")
+
                 lines_wih.draw(win)
 
         # Wait for the user to make an input before closing the window
