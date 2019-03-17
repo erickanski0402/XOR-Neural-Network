@@ -1,5 +1,7 @@
+import math
 import numpy as np
 import scipy.special
+from graphics import *
 
 class neural_network:
     def __init__(self, input_nodes, hidden_nodes, output_nodes, alpha):
@@ -65,3 +67,49 @@ class neural_network:
         final_outputs = self.activation_function(final_inputs)
 
         return final_outputs
+
+
+    def visualize(self):
+        # Create window
+        win = GraphWin('Neural Network',400,300)
+
+        radius = 15
+
+        inputs = []
+        hiddens = []
+        outputs = []
+
+        for _ in range(self.onodes):
+            outputs.append(Circle(Point(300, 50 * _ + 50), radius))
+            outputs[_].draw(win)
+
+        for _ in range(self.hnodes):
+            hiddens.append(Circle(Point(200, 50 * _ + 50), radius))
+            hiddens[_].draw(win)
+
+            for i in range(self.onodes):
+                p1 = self.getEdgePoint(hiddens[_],outputs[i],radius)
+                p2 = self.getEdgePoint(outputs[i],hiddens[_],radius)
+                lines_who = Line(p1, p2)
+                lines_who.draw(win)
+
+        for _ in range(self.inodes):
+            inputs.append(Circle(Point(100,100 * _ + 50), radius))
+            inputs[_].draw(win)
+
+            for j in range(self.hnodes):
+                p1 = self.getEdgePoint(inputs[_],hiddens[j],radius)
+                p2 = self.getEdgePoint(hiddens[j],inputs[_],radius)
+                lines_wih = Line(p1,p2)
+                lines_wih.draw(win)
+
+        # Wait for the user to make an input before closing the window
+        win.getMouse()
+        win.close()
+
+
+    def getEdgePoint(self, circleA, circleB, r):
+        cartesianDistance = math.sqrt(math.pow((circleB.getCenter().getX() - circleA.getCenter().getX()),2) + math.pow((circleB.getCenter().getY() - circleA.getCenter().getY()),2))
+        C_x = circleA.getCenter().getX() + r * (circleB.getCenter().getX() - circleA.getCenter().getX()) / cartesianDistance
+        C_y = circleA.getCenter().getY() + r * (circleB.getCenter().getY() - circleA.getCenter().getY()) / cartesianDistance
+        return Point(C_x,C_y)
