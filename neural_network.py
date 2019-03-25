@@ -146,6 +146,8 @@ class neural_network:
         win.getMouse()
         win.close()
 
+# HOW AM I GOING TO HANDLE MAKING CONNECTIONS BIGGER/SMALLER BASED ON THEIR SIGNIFICANCE?!
+
 
     def getEdgePoint(self, circleA, circleB, r):
         cartesianDistance = math.sqrt(math.pow((circleB.getCenter().getX() - circleA.getCenter().getX()),2) + math.pow((circleB.getCenter().getY() - circleA.getCenter().getY()),2))
