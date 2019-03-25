@@ -146,7 +146,7 @@ class neural_network:
         win.getMouse()
         win.close()
 
-# HOW AM I GOING TO HANDLE MAKING CONNECTIONS BIGGER/SMALLER BASED ON THEIR SIGNIFICANCE?!
+        # HOW AM I GOING TO HANDLE MAKING CONNECTIONS BIGGER/SMALLER BASED ON THEIR SIGNIFICANCE?!
 
 
     def getEdgePoint(self, circleA, circleB, r):
